@@ -20,16 +20,18 @@
 </template>
 
 <script>
-export default {
-    props:[
-        'id'
+  export default {
+    props: [
+      'id'
     ],
-  data() {
+    data() {
       return {
-          img: 'https://cs8.pikabu.ru/post_img/2018/03/20/9/1521555110178035798.jpg',
-          name: 'Имя Фамилия и Ше шось',
-          text: 'Гений, Миллиардер, Плейбой, Филантроп'
-      }
+        img: 'https://cs8.pikabu.ru/post_img/2018/03/20/9/1521555110178035798.jpg',
+        name: 'Имя Фамилия и Ше шось',
+        text: 'Гений, Миллиардер, Плейбой, Филантроп',        
+    }
+
   }
-}
+} 
 </script>
+
