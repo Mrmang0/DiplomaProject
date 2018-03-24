@@ -34,8 +34,8 @@ export default {
   data(){
       return{
         photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Cicero_-_Musei_Capitolini.JPG/800px-Cicero_-_Musei_Capitolini.JPG',
-        name:'Тич бог одинович',
-        description: 'Плейбой, Філантроп, Технік-програміст',
+        name:'Среднестатистический вот одинович',
+        description: 'вот так вот',
         text: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam non at, itaque pariatur mollitia ducimus id eius repudiandae, minus unde dolore dolores aperiam! Vitae voluptatem odit voluptate debitis. Nisi, optio.'
       }
   }
