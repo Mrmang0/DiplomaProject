@@ -37,12 +37,7 @@ export default {
     'pad',
     'files'
   ],
-//   computed: {
-//     _pad: {
-//       get(){ return this.tempPad},
-//       set(value){this.tempPad=value+30}
-//     }
-//   },
+
   data() {
     return {
       expanded: {},

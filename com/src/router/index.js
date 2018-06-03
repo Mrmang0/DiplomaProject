@@ -4,6 +4,7 @@ import NewsPage from '@/components/news/NewsPage'
 import Teachers from '@/components/teachers/TeachersPage'
 import TeacherItemDetails from '@/components/teachers/TeacherItemDetails'
 import MethodPage from '@/components/method-data/MethodPage'
+import ProfilePage from '@/components/profile/ProfilePage'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
     {
       path: '/method-data',
       component: MethodPage
+    },
+
+    {
+      path: '/profile',
+      component: ProfilePage
     }
   ]
 })
