@@ -7,27 +7,22 @@
       <v-flex title mt-3>
         {{teacher.name+' '+teacher.surname+' '+teacher.patronomyc}}
       </v-flex>
-      <v-flex disabled--text body-2 mb-4>
+      <v-flex disabled--text body-2>
         {{teacher.smallDescription}}
+      </v-flex>
+       <v-flex mb-4>
+        <v-btn :to="`/teachers/${id}/disciplines`" flat color="primary" text-xs-center title py-3>Переглянути матеріали дисциплін</v-btn>        
       </v-flex>
       <v-flex text-xs-left px-5 mb-5 style="white-space: pre-wrap">
         {{teacher.aboutInfo}}
-      </v-flex>
-      <v-flex px-5>
-        <v-flex text-xs-center title py-3>Матеріали</v-flex>
-        <TeacherFileTree :folder="folder.folders" :files="folder.files" :pad="-30"></TeacherFileTree>        
-      </v-flex>
+      </v-flex>   
     </v-card>
   </div>
 </template>
 <script>
-import TeacherFileTree from './TeacherFileTree'
 import { HTTP } from '@/api'
 
 export default {
-    components: {
-        TeacherFileTree
-    },
  props: ['id'],
       
     

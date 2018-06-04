@@ -5,6 +5,7 @@ import Teachers from '@/components/teachers/TeachersPage'
 import TeacherItemDetails from '@/components/teachers/TeacherItemDetails'
 import MethodPage from '@/components/method-data/MethodPage'
 import ProfilePage from '@/components/profile/ProfilePage'
+import DisciplinePage from '@/components/teachers/DisciplinesPage'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
     {
       path: '/profile',
       component: ProfilePage
+    },
+
+    {
+      path: '/teachers/:id/disciplines/',
+      component: DisciplinePage
     }
   ]
 })
