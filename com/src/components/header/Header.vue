@@ -9,16 +9,25 @@
       <v-btn flat href="http://www.vcnuft.vn.ua/">Сайт коледжу</v-btn>        
     </v-toolbar-items>
     <v-spacer></v-spacer>
-      <SignPage ></SignPage>
+      <SignPage v-if="!isLogged" ></SignPage>
+      <drop-down v-else></drop-down>
   </v-toolbar>
 </template>
 
 <script>
 import SignPage from '@/components/sign-modal/SignPage'
+import DropDown from '@/components/header/Dropdown'
 
 export default {
   components:{ 
       SignPage,
+      DropDown,
   },
+  computed: {
+    isLogged()
+    {
+      return this.$store.getters.isLogged;
+    }
+  }
 }
 </script>
