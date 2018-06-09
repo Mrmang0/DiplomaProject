@@ -31,7 +31,7 @@
           <v-form @submit.prevent="register" ref="formRegistration">
             <v-text-field :rules="emailRules" label="Email" v-model="registerRequestData.email">
             </v-text-field>
-            <v-text-field :rules="nameRules" label="Прізвище" v-model="registerRequestData.patronomyc">
+            <v-text-field :rules="nameRules" label="Прізвище" v-model="registerRequestData.patr">
             </v-text-field>
             <v-text-field :rules="nameRules" label="Ім'я" v-model="registerRequestData.name">
             </v-text-field>
@@ -89,23 +89,23 @@
 
         },
         emailRules: [
-          v => !!v || 'This field is required',
+          v => !!v || 'Це поле є необхідним',
           v => v && /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(v) || 'E-mail must be valid'
         ],
         nameRules: [
-          v => !!v || 'This field is required',
-          v => v && v.length > 1 || 'потрібно більше символів'
+          v => !!v || 'Це поле є необхідним',
+          v => v && v.length > 2 || 'потрібно більше символів'
         ],
         loginRules: [
-          v => !!v || 'This field is required',
+          v => !!v || 'Це поле є необхідним',
           v => v && v.length > 5 || 'потрібно більше символів'
         ],
         passwordRules: [
-          v => !!v || 'This field is required',
+          v => !!v || 'Це поле є необхідним',
           v => v && v.length > 5 || 'Пароль дуже короткий'
         ],
         repeatPasswordRules: [
-          v => !!v || 'This field is required',
+          v => !!v || 'Це поле є необхідним',
           v => v && (v === this.registerRequestData.password) || 'Паролі повинні співпадати'
         ],
       }

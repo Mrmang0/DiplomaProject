@@ -1,24 +1,31 @@
 <template>
   <v-layout row>
     <v-flex xs12>
-      <v-card >
+      <v-card>
         <v-card-title primary-title>
           <div>
-            <div class="headline">{{newItem.name}}</div>
-            <span class="grey--text">{{newItem.date}}</span>
+            <div class="headline">
+              {{newItem.name}}
+
+            </div>
+            <span class="grey--text">
+              {{newItem.date}}
+            </span>
           </div>
           <v-spacer></v-spacer>
+
+          <NewsModal v-if="getUser.isAdmin || getUser.isAdmin!=null"></NewsModal>
         </v-card-title>
         <v-flex class="text-xs-center">
-           <img style="max-height: 400px" :src="newItem.imageUrl" alt="">
+          <img style="max-height: 400px" :src="newItem.imageUrl" alt="">
         </v-flex>
-        
+
         <v-spacer></v-spacer>
         <v-btn class="mt-5" flat @click.native="show = !show">
           <v-icon>{{ show ?'keyboard_arrow_up':'keyboard_arrow_down' }}</v-icon>
           {{show?'Сховати':'Показати більше'}}
         </v-btn>
-        
+
         <v-slide-y-transition>
           <v-card-text v-show="show">
             {{newItem.context}}
@@ -29,10 +36,21 @@
   </v-layout>
 </template>
 
+
 <script>
+import NewsModal from './NewsEditModal';
+
   export default {
     props: {
       newItem: Object
+    },
+    components: {
+      NewsModal
+    },
+    computed: {
+      getUser () {
+        return this.$store.getters.getUser;
+      }
     },
     data() {
       return {

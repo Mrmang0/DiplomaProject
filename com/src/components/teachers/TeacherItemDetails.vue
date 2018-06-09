@@ -11,7 +11,7 @@
         {{teacher.smallDescription}}
       </v-flex>
        <v-flex mb-4>
-        <v-btn :to="`/teachers/${id}/disciplines`" flat color="primary" text-xs-center title py-3>Переглянути матеріали дисциплін</v-btn>        
+        <v-btn :to="`/teachers/${id}/disciplines`" flat color="primary" text-xs-center title py-3>Переглянути навчальні дисципліни</v-btn>        
       </v-flex>
       <v-flex text-xs-left px-5 mb-5 style="white-space: pre-wrap">
         {{teacher.aboutInfo}}

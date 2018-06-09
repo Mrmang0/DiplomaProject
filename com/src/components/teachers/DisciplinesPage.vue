@@ -17,9 +17,21 @@
               <v-list-tile v-for="(subItem,index) in item.items" :key="subItem.title">
                 <v-list-tile-content @click="click(i,index)">
                   {{ subItem.title }}
-                </v-list-tile-content>
+                </v-list-tile-content>   
               </v-list-tile>
+              <NewMaterialModal :disciplineId="item.id"></NewMaterialModal>
             </v-list-group>
+
+            <v-btn dark flat color="primary" @click="isNewDiscipline = true" v-if="!isNewDiscipline">
+              Додати дисциплiну
+            </v-btn>
+
+            <v-flex v-else px-2>
+              <v-text-field label="Назва дисциплiни" autofocus v-model="disciplineName"></v-text-field>
+
+              <v-btn flat small @click="createDiscipline">зберегти</v-btn>
+              <v-btn flat small @click="isNewDiscipline = false">вiдмiнити</v-btn>
+            </v-flex>
           </v-list>
         </v-card>
       </v-flex>
@@ -44,124 +56,106 @@
 
 </template>
 
-
-
-
-
 <script>
-  import DisciplinesFileTree from './DisciplinesFileTree'
-  export default {
-    components: {
-      DisciplinesFileTree
-    },
-    methods: {
-      click(i, arg) {
-        this.currentDisciplineID = i;
-        this.currentTopicID = arg;
-      }
-    },
+import DisciplinesFileTree from './DisciplinesFileTree';
+import NewMaterialModal from './NewMaterialModal';
 
-    computed: {
-      currentItem() {
-        if (this.currentDisciplineID || this.currentTopicID || this.currentDisciplineID == 0 || this.currentTopicID == 0)
-          return this.items[this.currentDisciplineID].items[this.currentTopicID].files;
-      },
-      currentPDF() {
-        if (this.currentDisciplineID || this.currentTopicID || this.currentDisciplineID == 0 || this.currentTopicID == 0)
-          return this.items[this.currentDisciplineID].items[this.currentTopicID].url;
-      }
+export default {
+  components: {
+    DisciplinesFileTree,
+    NewMaterialModal
+  },
+  methods: {
+    click(i, arg) {
+      this.currentDisciplineID = i;
+      this.currentTopicID = arg;
     },
+    createDiscipline () {
+
+    }
+  },
+
+  computed: {
+    currentItem() {
+      if (this.currentDisciplineID || this.currentTopicID || this.currentDisciplineID == 0 || this.currentTopicID == 0)
+        return this.items[this.currentDisciplineID].items[this.currentTopicID].files;
+    },
+    currentPDF() {
+      if (this.currentDisciplineID || this.currentTopicID || this.currentDisciplineID == 0 || this.currentTopicID == 0)
+        return this.items[this.currentDisciplineID].items[this.currentTopicID].url;
+    },
+    isAdmin () {
+      return this.$store.getters.getUser.isAdmin
+    },
+    isLogged () {
+      return this.$store.getters.getUser.id === asdf ? true : false
+    },
+    getUser () {
+      return this.$store.getters.getUser;
+    }
+  },
 
 
-    data() {
-      return {
-        currentDisciplineID: null,
-        currentTopicID: null,
-        items: [{
-            title: 'Програмування',
-            items: [{
-                title: 'Быдлокодим на vue js a potom bats i snova govno',
-                url: 'http://kom-fmd.at.ua/vz_plan.pdf',
-                files: [{
-                    name: 'sodsi.txt',
-                    url: 'sosi.com'
-                  },
-                  {
-                    name: 'foo.txt',
-                    url: 'foo.com'
-                  }
-                ]
-              },
-              {
-                title: 'Быдлокодим sна vue js a potom bats i snova govno',
-                url: 'http://kom-fmd.at.ua/mr_plan.pdf',
-                files: [{
-                    name: 'sossi.txt',
-                    url: 'sosi.com'
-                  },
-                  {
-                    name: 'foo.txt',
-                    url: 'foo.com'
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            title: 'Фізика',
-            items: [{
-              title: 'Быдлокодим на vue js a potom bats i snova govno',
-              url: 'http://kom-fmd.at.ua/mr_plan.pdf',
-              files: [{
-                  name: 'sosi.txt',
-                  url: 'sosi.com'
-                },
-                {
-                  name: 'foo.txt',
-                  url: 'foo.com'
-                }
-              ]
-            }]
-          },
-          {
-            title: 'Вища математика',
-            items: [{
-              title: 'Быдлокодим на vue js a potom bats i snova govno',
+  data() {
+    return {
+      currentDisciplineID: null,
+      currentTopicID: null,
+      isNewDiscipline: false,
+      disciplineName: '',
+      items: [{
+          title: 'Програмування',
+          items: [{
+              title: '1. Вступна лекція. Місце програмування в суспільстві',
               url: 'http://kom-fmd.at.ua/vz_plan.pdf',
               files: [{
-                  name: 'sosi.txt',
-                  url: 'sosi.com'
+                  name: 'Презентація',
+                  url: 'https://docs.google.com/file/d/0B3CpkH16SSXqemMxMlR3dGQzN1U/view'
                 },
                 {
-                  name: 'foo.txt',
-                  url: 'foo.com'
+                  name: 'Текст лекції',
+                  url: 'https://docs.google.com/file/d/0B3CpkH16SSXqQjJaSDczZHFYdU0/view'
                 }
               ]
-            }]
-          },
-        ],
-        folder: {
-          folders: [{
-            name: 'Програмування',
-            folders: [{
-              name: 'Лабораторні роботи',
-              files: [{
-                name: 'Лабораторна №1.pdf'
-              }]
-            }],
+            },          
+          ]
+        },
+        {
+          title: 'Фізика',
+          items: [{
+            title: 'Быдлокодим на vue js a potom bats i snova govno',
+            url: 'http://kom-fmd.at.ua/mr_plan.pdf',
             files: [{
-              name: 'Список літератури.pdf'
-            }],
+                name: 'sosi.txt',
+                url: 'sosi.com'
+              },
+              {
+                name: 'foo.txt',
+                url: 'foo.com'
+              }
+            ]
+          }]
+        },
+      ],
+      folder: {
+        folders: [{
+          name: 'Програмування',
+          folders: [{
+            name: 'Лабораторні роботи',
+            files: [{
+              name: 'Лабораторна №1.pdf'
+            }]
           }],
           files: [{
-            name: 'сайт з програмування Тичука Р.Б..pdf'
-          }]
-        }
+            name: 'Список літератури.pdf'
+          }],
+        }],
+        files: [{
+          name: 'сайт з програмування Тичука Р.Б..pdf'
+        }]
       }
     }
   }
-
-
+}
 </script>
 
 <style lang="scss" scoped>
@@ -169,7 +163,7 @@
 .item-embed {
   text-align: center;
   width: 100%;
-  height: 800px;
+  height: 600px;
 }
 
 </style>

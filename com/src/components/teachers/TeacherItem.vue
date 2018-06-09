@@ -7,7 +7,7 @@
             </v-avatar>
           </v-flex>
           <v-flex title>
-              {{teacher.name+' '+teacher.surname+' '+teacher.patronomyc}}
+              {{teacher.surname+' '+teacher.name+' '+teacher.patronomyc}}
           </v-flex>
           <v-flex pt-1 disabled--text body-1 mb-2>
               {{teacher.smallDescription}}
